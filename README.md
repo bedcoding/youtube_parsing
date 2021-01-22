@@ -1,6 +1,6 @@
 ### 실행방법
-"yarn start": 서버 + 클라이언트 동시 실행 (http://localhost:3000, http://localhost:3010)
-"yarn start:client": 클라이언트만 실행,
+"yarn start": 서버 + 클라이언트 동시 실행 (http://localhost:3000, http://localhost:3010) <br/>
+"yarn start:client": 클라이언트만 실행, <br/>
 "yarn start:server": 서버만 실행
 
 
@@ -11,7 +11,7 @@
 
 
 ### 프론트 + 백엔드 연동에 참고한 자료
-https://hello-bryan.tistory.com/121
+https://hello-bryan.tistory.com/121 <br/>
 https://hello-bryan.tistory.com/122
 
 
