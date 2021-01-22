@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 function App(props) {
   const [openMessage, setOpenMessage] = useState('백엔드가 연결이 안 되었습니다.');  // 백엔드로부터 초기 메시지 받으면 변경
   const [youtubeLink, setYoutubeLink] = useState('');  // 백엔드로 전달할 유튜브 링크
-  const [subTitle, setSubTitle] = useState('');  // 백엔드에서 받은 자막
-  const [isClick, setIsClick] = useState(false);
+  const [subTitle, setSubTitle] = useState('');   // 백엔드에서 받은 자막
+  const [isClick, setIsClick] = useState(false);  // 버튼 클릭 여부 확인
 
+  // 1. 백엔드 연결 확인
   useEffect(() => {
-    // 백엔드 연결 확인 (http://localhost:3010/api)
+    // http://localhost:3010/api
     fetch('/api')
       .then(res => res.json())
       .then(data => {
@@ -18,12 +19,13 @@ function App(props) {
       })
   }, [])
 
+  // 2. 백엔드에서 자막 받기
   useEffect(() => {
     if (!isClick) {
       return;
     }
 
-    // 백엔드에서 자막 받기 (http://localhost:3010/api/subtitle ? 유튜브 주소)
+    // http://localhost:3010/api/subtitle ? 유튜브 주소
     fetch(`/api/subtitle?youtube_link=${youtubeLink}`)
       .then(res => res.json())
       .then(data => {
@@ -37,10 +39,16 @@ function App(props) {
     setIsClick(false);
   }, [isClick, youtubeLink])
 
+
+  // 버튼 클릭
   const sendButton = () => {
+    // setYoutubeLink('vxiglrJovis');  // 테스트
     setSubTitle('자막 데이터를 받아오는 중입니다.');
-    setYoutubeLink('vxiglrJovis');
     setIsClick(true);
+  }
+
+  const onChangeURL = (e) => {
+    setYoutubeLink(e.target.value);
   }
 
   return (
@@ -48,6 +56,7 @@ function App(props) {
       {openMessage}  <br /><br />
 
       <div>
+        <input onChange={onChangeURL} />
         <button onClick={sendButton}>Click Me!</button>
       </div>
 
