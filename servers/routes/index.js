@@ -3,19 +3,24 @@ const getSubtitles = require('youtube-captions-scraper').getSubtitles;
 const express = require('express');
 const router = express.Router();
 
-// http://localhost:3010/api
+
+// 1. 프론트에 백엔드 연결됐다는 문구 전송 (http://localhost:3010/api)
 router.get('/', (req, res) => {
   res.json({ openMessage: '백엔드에 연결되었습니다.' })
 })
 
-// http://localhost:3010/api/subtitle (유튜브 자막 가져오기)
+
+// 2. 유튜브 자막 가져오기 (http://localhost:3010/api/subtitle)
 router.get('/subtitle', (req, res) => {
+  console.log("프론트에서 받은 자막 유튜브 링크: ", req.query.youtube_link);
+
   getSubtitles({
-    videoID: 'vxiglrJovis',       // youtube video id
-    lang: 'ko'                    // default: `en`
-  }).then(function(captions) {
-    console.log(captions);
+    videoID: req.query.youtube_link,       // 백엔드에서 보낸 youtube video id
+    lang: 'ko'                     // default: `en`
+  }).then((captions) => {
     res.json({ subTitle: captions })
+  }).catch((err) => {
+    console.log("err: ", err);
   });
 });
 
