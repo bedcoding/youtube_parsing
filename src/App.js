@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Input, Button, TextareaAutosize } from '@material-ui/core';
 
 function App(props) {
   const [openMessage, setOpenMessage] = useState('백엔드가 연결이 안 되었습니다.');  // 백엔드로부터 초기 메시지 받으면 변경
@@ -53,14 +54,20 @@ function App(props) {
 
   return (
     <div>
-      {openMessage}  <br /><br />
-
       <div>
-        <input onChange={onChangeURL} />
-        <button onClick={sendButton}>Click Me!</button>
+        <Input onChange={onChangeURL} />
+        <Button variant="contained" color="primary" onClick={sendButton}> 링크 삽입 </Button>
       </div>
+      
+      <TextareaAutosize
+        style={{ width: '95%', marginTop: '5px' }}
+        value={subTitle ? `${subTitle}` : ' 결과창'}
+      />
 
-      {subTitle ? `${subTitle}` : '자막 데이터가 없습니다.'}
+      <TextareaAutosize
+        style={{ width: '95%' }}
+        value={openMessage}
+      />
     </div>
   );
 }
