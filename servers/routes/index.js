@@ -9,18 +9,17 @@ router.get('/', (req, res) => {
   res.json({ openMessage: '백엔드에 연결되었습니다.' })
 })
 
-
 // 2. 유튜브 자막 가져오기 (http://localhost:3010/api/subtitle)
 router.get('/subtitle', (req, res) => {
   console.log("프론트에서 받은 자막 유튜브 링크: ", req.query.youtube_link);
 
   getSubtitles({
-    videoID: req.query.youtube_link,       // 백엔드에서 보낸 youtube video id
-    lang: 'ko'                     // default: `en`
+    videoID: req.query.youtube_link,    // 프론트에서 받은 youtube video id
+    lang: 'ko'                          // default: `en`
   }).then((captions) => {
-    res.json({ subTitle: captions })
+    res.json({ subTitle: captions })    // 프론트로 보내는 자막 데이터
   }).catch((err) => {
-    console.log("err: ", err);
+    console.log("/subtitle 서버 에러: ", err);
   });
 });
 
