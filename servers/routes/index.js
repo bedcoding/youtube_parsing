@@ -11,7 +11,10 @@ router.get('/', (req, res) => {
 
 // 2. 유튜브 자막 가져오기 (http://localhost:3010/api/subtitle)
 router.get('/subtitle', (req, res) => {
-  console.log("프론트에서 받은 자막 유튜브 링크: ", req.query.youtube_link);
+  if (req.query.youtube_link === '') {
+    res.json({ subTitle: "유튜브 아이디가 비어 있습니다." })
+    return;
+  }
 
   getSubtitles({
     videoID: req.query.youtube_link,    // 프론트에서 받은 youtube video id
@@ -19,7 +22,8 @@ router.get('/subtitle', (req, res) => {
   }).then((captions) => {
     res.json({ subTitle: captions })    // 프론트로 보내는 자막 데이터
   }).catch((err) => {
-    console.log("/subtitle 서버 에러: ", err);
+    console.log("err: ", err);
+    res.json({ subTitle: "[서버 오류 발생] 자막 데이터를 못 받았습니다. 유효한 유튜브 ID가 아니거나, 회사 노트북이 TruAccess 같은 사이트에서 로그아웃이 되어 있는지 확인 바랍니다." })
   });
 });
 
