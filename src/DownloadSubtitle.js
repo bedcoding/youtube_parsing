@@ -15,7 +15,7 @@ function DownloadSubtitle(props) {
     }
 
 
-    // 1. 백엔드 연결 확인 (http://localhost:3010/api)
+    // 1. 백엔드 연결 확인 (http://localhost:4000/api)
     useEffect(() => {
         fetch('/api')
             .then(res => res.json())
@@ -44,7 +44,7 @@ function DownloadSubtitle(props) {
             youtubeID = youtubeLink.split('https://www.youtube.com/watch?v=')[1];
         }
         
-        // http://localhost:3010/api/subtitle ? 유튜브 주소
+        // http://localhost:4000/api/subtitle ? 유튜브 주소
         fetch(`/api/subtitle?youtube_link=${youtubeID}`)
             .then(res => res.json())
             .then(data => {

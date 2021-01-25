@@ -5,12 +5,15 @@ const ytdl = require("ytdl-core");
 const router = express.Router();
 
 
-// 1. 프론트에 백엔드 연결됐다는 문구 전송 (http://localhost:3010/api)
+
+// 1. 프론트에 백엔드 연결됐다는 문구 전송 (http://localhost:4000/api)
 router.get('/', (req, res) => {
   res.json({ openMessage: '백엔드에 연결되었습니다.' })
 })
 
-// 2. 유튜브 자막 가져오기 (http://localhost:3010/api/subtitle)
+
+
+// 2. 유튜브 자막 가져오기 (http://localhost:4000/api/subtitle)
 router.get('/subtitle', (req, res) => {
   if (req.query.youtube_link === '') {
     res.json({ subTitle: "유튜브 아이디가 비어 있습니다." })
@@ -28,8 +31,10 @@ router.get('/subtitle', (req, res) => {
   });
 });
 
-// 3. 유튜브 음악 다운로드 (http://localhost:3010/api/download?URL=${유튜브링크})
-router.get("/download", (req, res) => {
+
+
+// 3. 유튜브 음악 다운로드 (http://localhost:4000/api/DownloadAudio?URL=${유튜브링크})
+router.get("/DownloadAudio", (req, res) => {
   var URL = req.query.URL;
   res.header("Content-Disposition", 'attachment; filename="file.mp3"');
 

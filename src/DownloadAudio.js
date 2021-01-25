@@ -3,10 +3,9 @@ import { Input, Button } from '@material-ui/core';
 
 function DownloadAudio(props) {
     const [inputUrl, setInputUrl] = useState("");
-    // /api/subtitle?youtube_link=${youtubeID}
     const convertVideo = () => {
         if (inputUrl !== "") {
-            window.location.href = `http://localhost:3010/api/download?URL=${inputUrl}`;
+            window.location.href = `http://localhost:4000/api/DownloadAudio?URL=${inputUrl}`;
         } else {
             alert("URL을 넣으세요");
         }
