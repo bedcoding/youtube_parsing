@@ -5,7 +5,7 @@ function DownloadAudio(props) {
     const [inputUrl, setInputUrl] = useState("");
     const convertVideo = () => {
         if (inputUrl !== "") {
-            window.location.href = `http://localhost:4000/api/DownloadAudio?URL=${inputUrl}`;
+            window.location.href = `http://localhost:4000/api/DownloadAudio?youtubeLink=${inputUrl}`;
         } else {
             alert("URL을 넣으세요");
         }
@@ -18,7 +18,7 @@ function DownloadAudio(props) {
                 <Input
                     style={{ width: '22%' }}
                     onChange={(e) => setInputUrl(e.target.value)}
-                    placeholder="URL 예시: https://www.youtube.com/watch?v=유튜브아이디"
+                    placeholder="https://www.youtube.com/watch?v=유튜브아이디"
                 />
 
                 <Button

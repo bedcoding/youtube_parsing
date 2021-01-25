@@ -44,8 +44,8 @@ function DownloadSubtitle(props) {
             youtubeID = youtubeLink.split('https://www.youtube.com/watch?v=')[1];
         }
         
-        // http://localhost:4000/api/subtitle ? 유튜브 주소
-        fetch(`/api/subtitle?youtube_link=${youtubeID}`)
+        // http://localhost:4000/api/subtitle?youtubeLink=유튜브주소
+        fetch(`/api/subtitle?youtubeLink=${youtubeID}`)
             .then(res => res.json())
             .then(data => {
                 setSubTitle(JSON.stringify(data.subTitle));         // 미리보기 변경
@@ -75,9 +75,10 @@ function DownloadSubtitle(props) {
                 <Input 
                     style={{width:'22%'}} 
                     onChange={onChangeURL} 
-                    placeholder="URL 예시: https://www.youtube.com/watch?v=유튜브아이디" />
+                    placeholder="https://www.youtube.com/watch?v=유튜브아이디" />
 
                 <Button 
+                    style={{marginRight:'20px'}}
                     variant="contained" 
                     color="primary" 
                     onClick={sendButton}> 
@@ -86,8 +87,8 @@ function DownloadSubtitle(props) {
 
                 {
                     downloadLink !== ''
-                        ? <Link download='youtube_subtitle.txt' href={downloadLink}>ㅤ자막 다운로드 버튼 </Link>
-                        : ' ㅤ자막 다운로드 버튼 (파일없음)'
+                        ? <Link download='youtube_subtitle.txt' href={downloadLink}>자막 다운로드 버튼 </Link>
+                        : '자막 다운로드 버튼 (파일없음)'
                 }
                 {/* {"ㅤㅤ" + openMessage} */}
             </div>

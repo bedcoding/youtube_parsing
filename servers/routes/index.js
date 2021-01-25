@@ -13,15 +13,15 @@ router.get('/', (req, res) => {
 
 
 
-// 2. 유튜브 자막 가져오기 (http://localhost:4000/api/subtitle)
+// 2. 유튜브 자막 가져오기 (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크)
 router.get('/subtitle', (req, res) => {
-  if (req.query.youtube_link === '') {
+  if (req.query.youtubeLink === '') {
     res.json({ subTitle: "유튜브 아이디가 비어 있습니다." })
     return;
   }
 
   getSubtitles({
-    videoID: req.query.youtube_link,    // 프론트에서 받은 youtube video id
+    videoID: req.query.youtubeLink,     // 프론트에서 받은 youtube video id
     lang: 'ko'                          // default: `en`
   }).then((captions) => {
     res.json({ subTitle: captions })    // 프론트로 보내는 자막 데이터
@@ -33,9 +33,9 @@ router.get('/subtitle', (req, res) => {
 
 
 
-// 3. 유튜브 음악 다운로드 (http://localhost:4000/api/DownloadAudio?URL=${유튜브링크})
+// 3. 유튜브 음악 다운로드 (http://localhost:4000/api/DownloadAudio?youtubeLink=유튜브링크)
 router.get("/DownloadAudio", (req, res) => {
-  var URL = req.query.URL;
+  let URL = req.query.youtubeLink;
   res.header("Content-Disposition", 'attachment; filename="file.mp3"');
 
   ytdl(URL, {
