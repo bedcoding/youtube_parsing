@@ -8,7 +8,7 @@ function DownloadAudio(props) {
       if (inputUrl !== "") {
         window.location.href = `http://localhost:3010/api/download?URL=${inputUrl}`;
       } else {
-        alert("url is empty");
+        alert("URL을 넣으세요");
       }
     };
   

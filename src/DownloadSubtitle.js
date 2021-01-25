@@ -61,6 +61,11 @@ function DownloadSubtitle(props) {
 
     // 버튼 클릭
     const sendButton = () => {
+        if (youtubeLink === "") {
+            alert("URL을 넣으세요");
+            return;
+        }
+
         // setYoutubeLink('vxiglrJovis');  // 테스트
         setSubTitle('자막 데이터를 받아오는 중입니다.');
         setDownloadLink('');
