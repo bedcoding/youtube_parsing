@@ -20,14 +20,20 @@ router.get('/subtitle', (req, res) => {
     return;
   }
 
+  // 추출할 자막의 언어 설정 (기본값: 한국어)
+  let language = 'ko';
+  if(req.query.language) {
+    language = req.query.language;
+  }  
+
   getSubtitles({
     videoID: req.query.youtubeLink,     // 프론트에서 받은 youtube video id
-    lang: 'ko'                          // default: `en`
+    lang: language                      // 값을 안 보낼 경우 default: `en`
   }).then((captions) => {
     res.json({ subTitle: captions })    // 프론트로 보내는 자막 데이터
   }).catch((err) => {
     console.log("err: ", err);
-    res.json({ subTitle: "[서버 오류 발생] 자막 데이터를 못 받았습니다. 유효한 유튜브 ID가 아니거나, 회사 노트북이 TruAccess 같은 사이트에서 로그아웃이 되어 있는지 확인 바랍니다." })
+    res.json({ subTitle: "[서버 오류 발생] 자막 데이터를 못 받았습니다. 해당 언어의 자막이 없거나, 유효한 유튜브 ID가 아니거나, 회사 노트북이 TruAccess 같은 사이트에서 로그아웃이 되어 있는지 확인 바랍니다." })
   });
 });
 

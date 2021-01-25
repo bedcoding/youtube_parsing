@@ -12,11 +12,10 @@ function DownloadAudio(props) {
     };
 
     return (
-        <div style={{ marginBottom: '5px' }}>
-            <h1>YouTube 자막, 음악 추출</h1>
-            <div>
+        <div>
+            <div style={{marginBottom: '10px'}}>
                 <Input
-                    style={{ width: '22%' }}
+                    style={{ marginRight: '10px', width: '22%' }}
                     onChange={(e) => setInputUrl(e.target.value)}
                     placeholder="https://www.youtube.com/watch?v=유튜브아이디"
                 />
