@@ -2,32 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Input, Button, TextareaAutosize, Link } from '@material-ui/core';
 
 function DownloadSubtitle(props) {
-    const [openMessage, setOpenMessage] = useState('백엔드가 연결이 안 되었습니다.');  // 백엔드로부터 초기 메시지 받으면 변경
     const [youtubeLink, setYoutubeLink] = useState('');   // 백엔드로 전달할 유튜브 링크
     const [subTitle, setSubTitle] = useState('');         // 백엔드에서 받은 자막 미리보기
     const [isClick, setIsClick] = useState(false);        // 버튼 클릭 여부 확인
     const [downloadLink, setDownloadLink] = useState('')  // 다운로드 버튼 링크
 
-    const makeTextFile = (param) => {
-        const data = new Blob([param], { type: 'text/plain' })               // This creates the file.
-        if (downloadLink !== '') window.URL.revokeObjectURL(downloadLink)    // this part avoids memory leaks
-        setDownloadLink(window.URL.createObjectURL(data))                    // update the download link state    
+
+    // 1. input 입력
+    const onChangeURL = (e) => {
+        setYoutubeLink(e.target.value);
     }
 
 
-    // 1. 백엔드 연결 확인 (http://localhost:4000/api)
-    useEffect(() => {
-        fetch('/api')
-            .then(res => res.json())
-            .then(data => {
-                setOpenMessage(JSON.stringify(data.openMessage));
-            })
-            .catch((err) => {
-                console.log("시작하자마자 에러: ", err);
-            })
-    }, [])
+    // 2. 버튼 클릭
+    const sendButton = () => {
+        if (youtubeLink === "") {
+            alert("URL을 넣으세요");
+            return;
+        }
 
-    // 2. 클릭이 감지되면 백엔드에서 자막 받기
+        setSubTitle('자막 데이터를 받아오는 중입니다.');
+        setDownloadLink('');
+        setIsClick(true);
+    }
+
+
+    // 3. 클릭이 감지되면 백엔드에서 자막 받기
     useEffect(() => {
         if (!isClick) {
             return;
@@ -59,21 +59,13 @@ function DownloadSubtitle(props) {
         setIsClick(false);
     }, [isClick, youtubeLink])
 
-    // 버튼 클릭
-    const sendButton = () => {
-        if (youtubeLink === "") {
-            alert("URL을 넣으세요");
-            return;
-        }
+    
 
-        // setYoutubeLink('vxiglrJovis');  // 테스트
-        setSubTitle('자막 데이터를 받아오는 중입니다.');
-        setDownloadLink('');
-        setIsClick(true);
-    }
-
-    const onChangeURL = (e) => {
-        setYoutubeLink(e.target.value);
+    // 4. 파일 다운로드
+    const makeTextFile = (param) => {
+        const data = new Blob([param], { type: 'text/plain' })               // This creates the file.
+        if (downloadLink !== '') window.URL.revokeObjectURL(downloadLink)    // this part avoids memory leaks
+        setDownloadLink(window.URL.createObjectURL(data))                    // update the download link state    
     }
 
 
@@ -94,7 +86,7 @@ function DownloadSubtitle(props) {
 
                 {
                     downloadLink !== ''
-                        ? <Link download='youtube_subtitle.txt' href={downloadLink}> 자막 다운로드 버튼 </Link>
+                        ? <Link download='youtube_subtitle.txt' href={downloadLink}>ㅤ자막 다운로드 버튼 </Link>
                         : ' ㅤ자막 다운로드 버튼 (파일없음)'
                 }
                 {/* {"ㅤㅤ" + openMessage} */}

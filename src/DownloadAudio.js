@@ -13,7 +13,7 @@ function DownloadAudio(props) {
 
     return (
         <div style={{ marginBottom: '5px' }}>
-            <h1>YouTube Downloader </h1>
+            <h1>YouTube 자막, 음악 추출</h1>
             <div>
                 <Input
                     style={{ width: '22%' }}
