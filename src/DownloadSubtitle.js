@@ -80,8 +80,18 @@ function DownloadSubtitle(props) {
     return (
         <div>
             <div>
-                <Input onChange={onChangeURL} placeholder="URL 예시: https://www.youtube.com/watch?v=유튜브아이디" />
-                <Button variant="contained" color="primary" onClick={sendButton}> 유튜브 자막 추출하기 </Button>ㅤ
+                <Input 
+                    style={{width:'22%'}} 
+                    onChange={onChangeURL} 
+                    placeholder="URL 예시: https://www.youtube.com/watch?v=유튜브아이디" />
+
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    onClick={sendButton}> 
+                    유튜브 자막 추출하기 
+                </Button>
+
                 {
                     downloadLink !== ''
                         ? <Link download='youtube_subtitle.txt' href={downloadLink}> 자막 다운로드 버튼 </Link>
