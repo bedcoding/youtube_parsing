@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, TextareaAutosize, Link } from '@material-ui/core';
 
-function Subtitle(props) {
+function DownloadSubtitle(props) {
     const [openMessage, setOpenMessage] = useState('백엔드가 연결이 안 되었습니다.');  // 백엔드로부터 초기 메시지 받으면 변경
     const [youtubeLink, setYoutubeLink] = useState('');   // 백엔드로 전달할 유튜브 링크
     const [subTitle, setSubTitle] = useState('');         // 백엔드에서 받은 자막 미리보기
@@ -9,7 +9,7 @@ function Subtitle(props) {
     const [downloadLink, setDownloadLink] = useState('')  // 다운로드 버튼 링크
 
     const makeTextFile = (param) => {
-        const data = new Blob([param], { type: 'text/plain' })            // This creates the file.
+        const data = new Blob([param], { type: 'text/plain' })               // This creates the file.
         if (downloadLink !== '') window.URL.revokeObjectURL(downloadLink)    // this part avoids memory leaks
         setDownloadLink(window.URL.createObjectURL(data))                    // update the download link state    
     }
@@ -84,4 +84,4 @@ function Subtitle(props) {
     );
 }
 
-export default Subtitle;
+export default DownloadSubtitle;
