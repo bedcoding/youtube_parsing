@@ -21,14 +21,7 @@
 (드래곤볼 모으는 것처럼 라이브러리를 주워모으다보니 서로 다르게 동작함)
 
 
-## 프론트 + 백엔드 연동에 참고한 자료
-https://hello-bryan.tistory.com/121 <br/>
-https://hello-bryan.tistory.com/122
-
-
-## 유튜브 자막 참고자료
-https://github.com/syzer/youtube-captions-scraper (자막추출 라이브러리)
+## 참고자료
+https://github.com/syzer/youtube-captions-scraper (유튜브 자막추출 라이브러리)
 https://dev.to/imjoshellis/simple-download-text-file-link-with-react-29j3 (텍스트 파일 다운로드)
-
-## 유튜브 음악 참고자료
-https://www.npmjs.com/package/ytdl-core (위 라이브러리와는 다르게 추출과 동시에 바로 다운로드함)
+https://www.npmjs.com/package/ytdl-core (유튜브 음악추출 + 다운로드 라이브러리)
