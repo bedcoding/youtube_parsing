@@ -17,3 +17,7 @@ https://hello-bryan.tistory.com/122
 
 ### 유튜브 자막추출에 사용한 라이브러리
 https://github.com/syzer/youtube-captions-scraper
+
+
+### 텍스트 파일 다운로드에 참조한 소스코드
+https://dev.to/imjoshellis/simple-download-text-file-link-with-react-29j3
