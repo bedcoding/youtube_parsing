@@ -33,8 +33,19 @@ function DownloadSubtitle(props) {
             return;
         }
 
+        // 유튜브 ID 추출 (이 API는 링크 그대로 넣으면 안되고, 반드시 유튜브 동영상 아이디로 줘야 한다)
+        let youtubeID = youtubeLink;  // 초기값
+
+        if(youtubeLink.indexOf('https://youtu.be/') > -1) {
+            youtubeID = youtubeLink.split('https://youtu.be/')[1];
+        }
+
+        if(youtubeLink.indexOf('https://www.youtube.com/watch?v=') > -1) {
+            youtubeID = youtubeLink.split('https://www.youtube.com/watch?v=')[1];
+        }
+        
         // http://localhost:3010/api/subtitle ? 유튜브 주소
-        fetch(`/api/subtitle?youtube_link=${youtubeLink}`)
+        fetch(`/api/subtitle?youtube_link=${youtubeID}`)
             .then(res => res.json())
             .then(data => {
                 setSubTitle(JSON.stringify(data.subTitle));         // 미리보기 변경
@@ -64,12 +75,12 @@ function DownloadSubtitle(props) {
     return (
         <div>
             <div>
-                <Input onChange={onChangeURL} />
-                <Button variant="contained" color="primary" onClick={sendButton}> 유튜브 동영상 ID 삽입 </Button>ㅤ
+                <Input onChange={onChangeURL} placeholder="URL 예시: https://www.youtube.com/watch?v=유튜브아이디" />
+                <Button variant="contained" color="primary" onClick={sendButton}> 유튜브 자막 추출하기 </Button>ㅤ
                 {
                     downloadLink !== ''
-                        ? <Link download='youtube_subtitle.txt' href={downloadLink}> 결과 다운로드 버튼 </Link>
-                        : ' ㅤ결과 다운로드 버튼 (파일없음)'
+                        ? <Link download='youtube_subtitle.txt' href={downloadLink}> 자막 다운로드 버튼 </Link>
+                        : ' ㅤ자막 다운로드 버튼 (파일없음)'
                 }
                 {/* {"ㅤㅤ" + openMessage} */}
             </div>

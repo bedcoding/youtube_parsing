@@ -1,11 +1,13 @@
 import React from 'react';
-import Subtitle from './DownloadSubtitle'
+import DownloadSubtitle from './DownloadSubtitle'
+import DownloadAudio from './DownloadAudio';
 
 function App(props) {
 
   return (
     <div>
-      <Subtitle/>
+      <DownloadAudio/>
+      <DownloadSubtitle/>
     </div>
   );
 }

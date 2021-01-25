@@ -1,6 +1,7 @@
-// < 프론트에서 로부터 신호 받으면 프론트로 데이터 전송하는 구간 >
+// < 프론트로부터 신호 받으면 프론트로 데이터 전송하는 구간 >
 const getSubtitles = require('youtube-captions-scraper').getSubtitles;
 const express = require('express');
+const ytdl = require("ytdl-core");
 const router = express.Router();
 
 
@@ -25,6 +26,17 @@ router.get('/subtitle', (req, res) => {
     console.log("err: ", err);
     res.json({ subTitle: "[서버 오류 발생] 자막 데이터를 못 받았습니다. 유효한 유튜브 ID가 아니거나, 회사 노트북이 TruAccess 같은 사이트에서 로그아웃이 되어 있는지 확인 바랍니다." })
   });
+});
+
+// 3. 유튜브 음악 다운로드 (http://localhost:3010/api/download?URL=${유튜브링크})
+router.get("/download", (req, res) => {
+  var URL = req.query.URL;
+  res.header("Content-Disposition", 'attachment; filename="file.mp3"');
+
+  ytdl(URL, {
+    format: "mp3",
+    quality: "highestaudio",
+  }).pipe(res);
 });
 
 module.exports = router;
