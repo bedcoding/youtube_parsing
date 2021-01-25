@@ -1,7 +1,7 @@
 ## 실행방법
 "yarn start": 서버 + 클라이언트 동시 실행 (http://localhost:3000, http://localhost:4000) <br/>
-"yarn start:client": 클라이언트만 실행, <br/>
-"yarn start:server": 서버만 실행
+"yarn start:client": 클라이언트만 실행 (http://localhost:3000) <br/>
+"yarn start:server": 서버만 실행 (http://localhost:4000)
 
 
 ## 전체구조
@@ -11,7 +11,7 @@
 
 
 ## 프론트 설명
-복사해서 그대로 사용할 수 있도록 자막 다운로드(DownloadSubtitle.js), 음악 다운로드(DownloadAudio.js) 기능을 아예 분리시켰습니다. <br/>
+복사해서 그대로 사용할 수 있도록 자막 다운로드(DownloadSubtitle.js), 음악 다운로드(DownloadAudio.js) 기능을 아예 분리시켰습니다.
 (그래서 input창도 2개로 분리시켰습니다. 하나의 input 창을 자막 다운로드/음악 다운로드 기능이 공유하면 소스코드 섞여서)
 
 
@@ -22,6 +22,6 @@
 
 
 ## 참고자료
-https://github.com/syzer/youtube-captions-scraper (유튜브 자막추출 라이브러리)
-https://dev.to/imjoshellis/simple-download-text-file-link-with-react-29j3 (텍스트 파일 다운로드)
+https://github.com/syzer/youtube-captions-scraper (유튜브 자막추출 라이브러리) <br/>
+https://dev.to/imjoshellis/simple-download-text-file-link-with-react-29j3 (텍스트 파일 다운로드) <br/>
 https://www.npmjs.com/package/ytdl-core (유튜브 음악추출 + 다운로드 라이브러리)
