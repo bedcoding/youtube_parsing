@@ -24,7 +24,7 @@ Servers/index.js 파일
 프론트에 백엔드 연결됐다는 문구 전송 (http://localhost:4000/api)
 
 2. /subtitle <br/>
-유튜브 자막 추출 (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크) <br/>
+유튜브 자막 추출 (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크&language=ko) <br/>
 자막 API는 다운로드가 아닌 자막 추출만 하고 있습니다.
 
 3. /DownloadAudio <br/>

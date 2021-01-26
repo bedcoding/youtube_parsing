@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 
 
-// 2. 유튜브 자막 가져오기 (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크)
+// 2. 유튜브 자막 가져오기 (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크&language=ko)
 router.get('/subtitle', (req, res) => {
   if (req.query.youtubeLink === '') {
     res.json({ subTitle: "유튜브 아이디가 비어 있습니다." })
