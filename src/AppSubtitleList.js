@@ -7,23 +7,31 @@ function AppSubtitleList(props) {
     const [languageList, setLanguageList] = useState([])     // 수동자막 리스트
     const [languageList_select, setLanguageList_select] = useState(0);    // 수동자막 선택박스
 
-    
+
     // 해당 영상에 사람이 직접 넣은 수동자막이 존재하는지 확인하는 로직 (문제점: 자동자막은 체크가 안됨)
     useEffect(() => {
         if (!isFindClick) {
             return;
         }
 
-        // 유튜브 ID 추출 (이 API는 링크 그대로 넣으면 안되고, 반드시 유튜브 동영상 아이디로 줘야 한다)
+        // 링크에서 유튜브 ID 추출 (이 API는 링크 그대로 넣으면 안되고, 반드시 유튜브 동영상 아이디로 줘야 한다)
         let youtubeID = youtubeLink;  // 초기값
 
-        if (youtubeLink.indexOf('https://youtu.be/') > -1) {
-            youtubeID = youtubeLink.split('https://youtu.be/')[1];
-        }
+        let linkList = [
+            "https://www.youtube.com/watch?v=",
+            "https://m.youtube.com/watch?v=",
+            "https://youtu.be/",
+            "https://www.youtube.com/v/",
+            "https://www.youtube.com/embed/",
+            "https://music.youtube.com/watch?v=",
+            "https://gaming.youtube.com/watch?v="
+        ]
 
-        if (youtubeLink.indexOf('https://www.youtube.com/watch?v=') > -1) {
-            youtubeID = youtubeLink.split('https://www.youtube.com/watch?v=')[1];
-        }
+        linkList.forEach(link => {
+            if(youtubeLink.indexOf(link) > -1) {
+                youtubeID = youtubeLink.split(link)[1];
+            }
+        });
 
         fetch(`http://video.google.com/timedtext?v=${youtubeID}&type=list`)          // 1. 크롬 주소창에 http://video.google.com/timedtext?v=비디오ID&type=list 형태로 쳐보면 수동 자막 목록이 나온다.
             .then(res => res.text())                                                 // 2. xml을 일단 텍스트 형태로 받는다.

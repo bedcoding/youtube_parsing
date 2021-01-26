@@ -9,7 +9,7 @@ function DownloadSubtitle(props) {
     const [languageList, setLanguageList] = useState([])  // 자막 리스트
     const [languageList_select, setLanguageList_select] = useState(0);    // 자막 선택박스
 
-    
+
     // 시간 관계상 임시로 전체 언어 리스트 수동으로 삽입 (자동으로 들어가게 하고 싶었으나 자동자막이 안 가져와지는 문제가 있었음)
     useEffect(() => {
         const tempLanguageList = [
@@ -231,15 +231,25 @@ function DownloadSubtitle(props) {
         // 유튜브 ID 추출 (이 API는 링크 그대로 넣으면 안되고, 반드시 유튜브 동영상 아이디로 줘야 한다)
         let youtubeID = youtubeLink;  // 초기값
 
-        if (youtubeLink.indexOf('https://youtu.be/') > -1) {
-            youtubeID = youtubeLink.split('https://youtu.be/')[1];
-        }
+        let linkList = [
+            "https://www.youtube.com/watch?v=",
+            "https://m.youtube.com/watch?v=",
+            "https://youtu.be/",
+            "https://www.youtube.com/v/",
+            "https://www.youtube.com/embed/",
+            "https://music.youtube.com/watch?v=",
+            "https://gaming.youtube.com/watch?v="
+        ]
 
-        if (youtubeLink.indexOf('https://www.youtube.com/watch?v=') > -1) {
-            youtubeID = youtubeLink.split('https://www.youtube.com/watch?v=')[1];
-        }
+        linkList.forEach(link => {
+            if(youtubeLink.indexOf(link) > -1) {
+                youtubeID = youtubeLink.split(link)[1];
+            }
+        });
 
+        // 추출하고 싶은 자막의 언어
         let sendLanguage = languageList[languageList_select][0];  // 형태: ['ko', '한국어']
+
 
         // http://localhost:4000/api/subtitle?youtubeLink=유튜브주소
         fetch(`/api/subtitle?youtubeLink=${youtubeID}&language=${sendLanguage}`)
