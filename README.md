@@ -20,16 +20,14 @@
 
 ## 백엔드 설명
 Servers/index.js 파일
-1. / <br/>
-프론트에 백엔드 연결됐다는 문구 전송 (http://localhost:4000/api)
+1. / (http://localhost:4000/api) <br/>
+프론트에 백엔드 연결됐다는 문구 전송 
 
-2. /subtitle <br/>
-유튜브 자막 추출 (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크&language=언어) <br/>
-자막 API는 다운로드가 아닌 자막 추출만 하고 있습니다.
+2. /subtitle (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크&language=언어) <br/>
+유튜브 자막 추출 (자막 API는 다운로드가 아닌 자막 추출만 하고 있습니다)
 
-3. /DownloadAudio <br/>
-유튜브 음악 다운로드 (http://localhost:4000/api/DownloadAudio?youtubeLink=유튜브링크) <br/>
-음악 API는 누르자마자 바로 다운로드를 때립니다.
+3. /DownloadAudio (http://localhost:4000/api/DownloadAudio?youtubeLink=유튜브링크) <br/>
+유튜브 음악 다운로드 (음악 API는 누르자마자 바로 다운로드를 때립니다)
 
 
 ## 참고자료
