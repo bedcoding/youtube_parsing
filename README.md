@@ -3,6 +3,7 @@
 "yarn start:client": 클라이언트만 실행 (http://localhost:3000) <br/>
 "yarn start:server": 서버만 실행 (http://localhost:4000)
 
+-----
 
 ## 전체구조
 일반 react 프론트 프로젝트에 "servers 폴더"를 끼워넣어서 백엔드랑 프론트가 한 곳에 같이 있습니다.
@@ -11,14 +12,24 @@
 
 
 ## 프론트 설명
-복사해서 그대로 사용할 수 있도록 자막 다운로드(DownloadSubtitle.js), 음악 다운로드(DownloadAudio.js) 기능을 아예 분리시켰습니다.
-(그래서 input창도 2개로 분리시켰습니다. 하나의 input 창을 자막 다운로드/음악 다운로드 기능이 공유하면 소스코드 섞여서)
+
+복사해서 그대로 사용할 수 있도록 각 기능들을 분리시켰습니다.
+1. DownloadAudio.js : 링크 삽입후 해당 유튜브의 음악 다운로드
+2. DownloadSubtitle.js : 링크 삽입후 해당 유튜브의 자막 추출 및 다운로드 (언어설정 가능)
+3. GetLanguage.js : 링크 삽입후 해당 유튜브에서 사람이 직접 입력한 수동 자막이 존재하는지 체크 (자동 자막은 못 불러와서 다른 방법 찾아야 합니다.)
+
 
 
 ## 백엔드 설명
-1. 자막(/subtitle) API는 다운로드가 아닌 자막 추출만 하고 있습니다. 다운로드는 프론트에서 합니다. <br/>
-2. 음악(/DownloadAudio) API는 누르자마자 바로 다운로드를 때립니다. <br/>
-(드래곤볼 모으는 것처럼 라이브러리를 주워모으다보니 서로 다르게 동작함)
+Servers/index.js 파일
+1. 프론트에 백엔드 연결됐다는 문구 전송 (http://localhost:4000/api)
+
+2. 유튜브 자막 추출 (http://localhost:4000/api/subtitle?youtubeLink=유튜브링크)
+
+3. 유튜브 음악 다운로드 (http://localhost:4000/api/DownloadAudio?youtubeLink=유튜브링크)
+
+2번 자막 API는 다운로드가 아닌 자막 추출만 하고 있습니다. 다운로드는 프론트에서 합니다. <br/>
+3번 음악 API는 누르자마자 바로 다운로드를 때립니다. <br/>
 
 
 ## 참고자료
