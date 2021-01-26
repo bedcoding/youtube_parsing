@@ -7,8 +7,8 @@ function AppSubtitleList(props) {
     const [languageList, setLanguageList] = useState([])     // 수동자막 리스트
     const [languageList_select, setLanguageList_select] = useState(0);    // 수동자막 선택박스
 
-
-    // 수동 자막 여부 체크
+    
+    // 해당 영상에 사람이 직접 넣은 수동자막이 존재하는지 확인하는 로직 (문제점: 자동자막은 체크가 안됨)
     useEffect(() => {
         if (!isFindClick) {
             return;
@@ -34,24 +34,29 @@ function AppSubtitleList(props) {
                 // 5. 가장 많이 쓰는 영어, 한국어는 존재시 최상단에 올린다.
                 let tempLanguageList = [];
                 for (let i = 0; i < test.childElementCount; i++) {
-                    let item = test.children.item(i);   // 형태: <track id=​"22" name lang_code=​"en" lang_original=​"English" lang_translated=​"English" lang_default=​"true">​</track>​
+                    let item = test.children.item(i);  // 형태: <track id=​"22" name lang_code=​"en" lang_original=​"English" lang_translated=​"English" lang_default=​"true">​</track>​
 
                     if(item.getAttribute("lang_code") === 'ko' || item.getAttribute("lang_code") === 'en') {
                         let itemObject = item.getAttribute("lang_code") + ", " + item.getAttribute("lang_original")
                         tempLanguageList.push(itemObject);  // 형태: en
                     }
-
                 }
 
                 // 6. 이후 나머지 언어를 붙인다.
                 for (let i = 0; i < test.childElementCount; i++) {
-                    let item = test.children.item(i);  // 형태: <track id=​"22" name lang_code=​"en" lang_original=​"English" lang_translated=​"English" lang_default=​"true">​</track>​
+                    let item = test.children.item(i);   // 형태: <track id=​"22" name lang_code=​"en" lang_original=​"English" lang_translated=​"English" lang_default=​"true">​</track>​
                     let itemObject = item.getAttribute("lang_code") + ", " + item.getAttribute("lang_original")
-                    tempLanguageList.push(itemObject);     // 형태: en
+                    tempLanguageList.push(itemObject);  // 형태: en
                 }
 
                 // 7. 중복제거
                 tempLanguageList = [...new Set(tempLanguageList)];
+                
+                // 8. 없을 경우
+                if(tempLanguageList.length === 0) {
+                    tempLanguageList = ['없음', ''];
+                }
+
                 setLanguageList(tempLanguageList);
             })
             .catch((err) => {
@@ -61,12 +66,11 @@ function AppSubtitleList(props) {
             setIsFindClick(false);
     }, [isFindClick])
 
-
     const selectChange = (event) => {
         setLanguageList_select(event.target.value);
     };
 
-    const findSubtitle = () => {
+    const onClickfind = () => {
         setIsFindClick(true);
     }
 
@@ -106,7 +110,7 @@ function AppSubtitleList(props) {
             <Button
                 variant="contained"
                 color="primary"
-                onClick={findSubtitle}>
+                onClick={onClickfind}>
                 수동자막 유무 확인용
             </Button>
 
