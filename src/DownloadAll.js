@@ -67,7 +67,7 @@ function DownloadAll(props) {
         fetch(`/api/subtitle?youtubeLink=${youtubeID}&language=en`)
             .then(res => res.json())
             .then(data => {
-                setViewEnglish(JSON.stringify(data.subTitle))   // 한글자막 미리보기 변경
+                setViewEnglish(JSON.stringify(data.subTitle))   // 영어자막 미리보기 변경
                 makeLinkEnglish(JSON.stringify(data.subTitle))  // 다운로드 링크 변경
 
                 if(data.subTitle === "[서버 오류] 해당 언어의 자막 데이터를 못 찾았습니다.") {
