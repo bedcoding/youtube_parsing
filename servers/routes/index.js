@@ -32,7 +32,7 @@ router.get('/subtitle', (req, res) => {
   }).then((captions) => {
     res.json({ subTitle: captions })    // 프론트로 보내는 자막 데이터
   }).catch((err) => {
-    console.log("err: ", err);
+    console.log("(유튜브 동영상에 해당 언어의 자막이 존재하지 않습니다) ", err);
     res.json({ subTitle: "[서버 오류] 해당 언어의 자막 데이터를 못 찾았습니다." })
   });
 });
