@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Input, Button } from '@material-ui/core';
 
-function DownloadAudio(props) {
+function SampleDownloadAudio(props) {
     const [youtubeLink, setYoutubeLink] = useState("");
     
     const convertVideo = () => {
@@ -32,4 +32,4 @@ function DownloadAudio(props) {
     );
 }
 
-export default DownloadAudio;
+export default SampleDownloadAudio;

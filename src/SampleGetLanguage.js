@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 
-function GetLanguage(props) {
+function SampleGetLanguage(props) {
     const [youtubeLink, setYoutubeLink] = useState('');      // input 창에 입력한 유튜브 링크
     const [isFindClick, setIsFindClick] = useState(false)    // 수동자막 찾기 버튼 클릭여부 확인
     const [languageList, setLanguageList] = useState([])     // 수동자막 리스트
@@ -126,4 +126,4 @@ function GetLanguage(props) {
     );
 }
 
-export default GetLanguage;
+export default SampleGetLanguage;

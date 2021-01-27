@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button, TextareaAutosize, Link, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 
-function DownloadSubtitle(props) {
+function SampleDownloadSubtitle(props) {
     const [youtubeLink, setYoutubeLink] = useState('');   // 백엔드로 전달할 유튜브 링크
     const [subTitle, setSubTitle] = useState('');         // 백엔드에서 받은 자막 미리보기
     const [isClick, setIsClick] = useState(false);        // 버튼 클릭 여부 확인
@@ -346,4 +346,4 @@ function DownloadSubtitle(props) {
     );
 }
 
-export default DownloadSubtitle;
+export default SampleDownloadSubtitle;
