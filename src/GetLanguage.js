@@ -37,10 +37,10 @@ function GetLanguage(props) {
             .then(res => res.text())                                                 // 2. xml을 일단 텍스트 형태로 받는다.
             .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))  // 3. 텍스트로 받은 데이터를 다시 xml 형태로 되돌린다.
             .then(data => {
-                let xml = data.getElementsByTagName("transcript_list")[0];          // 4. xml 형태로 수동자막 목록을 가져온다.
+                let tempLanguageList = [];
+                let xml = data.getElementsByTagName("transcript_list")[0];           // 4. xml 형태로 수동자막 목록을 가져온다.
 
                 // 5. 가장 많이 쓰는 영어, 한국어는 존재시 최상단에 올린다.
-                let tempLanguageList = [];
                 for (let i = 0; i < xml.childElementCount; i++) {
                     let item = xml.children.item(i);  // 형태: <track id=​"22" name lang_code=​"en" lang_original=​"English" lang_translated=​"English" lang_default=​"true">​</track>​
 

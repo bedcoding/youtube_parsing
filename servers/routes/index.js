@@ -33,7 +33,7 @@ router.get('/subtitle', (req, res) => {
     res.json({ subTitle: captions })    // 프론트로 보내는 자막 데이터
   }).catch((err) => {
     console.log("err: ", err);
-    res.json({ subTitle: "[서버 오류 발생] 자막 데이터를 못 받았습니다. 해당 언어의 자막이 없거나, 유효한 유튜브 ID가 아니거나, 회사 노트북이 TruAccess 같은 사이트에서 로그아웃이 되어 있는지 확인 바랍니다." })
+    res.json({ subTitle: "[서버 오류] 해당 언어의 자막 데이터를 못 찾았습니다." })
   });
 });
 

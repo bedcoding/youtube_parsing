@@ -17,7 +17,6 @@
 3. GetLanguage.js : 링크 삽입후 해당 유튜브에서 사람이 직접 입력한 수동 자막이 존재하는지 체크 (자동 자막은 못 불러와서 다른 방법 찾아야 합니다.)
 
 
-
 ## 백엔드 설명
 Servers/index.js 파일
 1. / (http://localhost:4000/api) <br/>

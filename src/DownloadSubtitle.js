@@ -251,7 +251,7 @@ function DownloadSubtitle(props) {
         let sendLanguage = languageList[languageList_select][0];  // 형태: ['ko', '한국어']
 
 
-        // http://localhost:4000/api/subtitle?youtubeLink=유튜브주소
+        // http://localhost:4000/api/subtitle?youtubeLink=유튜브주소&language=언어
         fetch(`/api/subtitle?youtubeLink=${youtubeID}&language=${sendLanguage}`)
             .then(res => res.json())
             .then(data => {
@@ -275,10 +275,12 @@ function DownloadSubtitle(props) {
     }
 
     
+    // 5. 추출하고 싶은 언어 변경
     const selectChange = (event) => {
         setLanguageList_select(event.target.value);
     };
 
+    
     return (
         <div>
             <div>

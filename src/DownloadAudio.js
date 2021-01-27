@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Input, Button } from '@material-ui/core';
 
 function DownloadAudio(props) {
-    const [inputUrl, setInputUrl] = useState("");
+    const [youtubeLink, setYoutubeLink] = useState("");
     
     const convertVideo = () => {
-        if (inputUrl !== "") {
-            window.location.href = `http://localhost:4000/api/DownloadAudio?youtubeLink=${inputUrl}`;
+        if (youtubeLink !== "") {
+            window.location.href = `http://localhost:4000/api/DownloadAudio?youtubeLink=${youtubeLink}`;
         } else {
             alert("URL을 넣으세요");
         }
@@ -17,7 +17,7 @@ function DownloadAudio(props) {
             <div style={{marginBottom: '10px'}}>
                 <Input
                     style={{ marginRight: '10px', width: '22%' }}
-                    onChange={(e) => setInputUrl(e.target.value)}
+                    onChange={(e) => setYoutubeLink(e.target.value)}
                     placeholder="https://www.youtube.com/watch?v=유튜브아이디"
                 />
 
